@@ -15,8 +15,6 @@
  */
 package com.yanzhenjie.permission.runtime;
 
-import androidx.annotation.NonNull;
-
 import com.yanzhenjie.permission.checker.PermissionChecker;
 import com.yanzhenjie.permission.checker.StrictChecker;
 import com.yanzhenjie.permission.source.Source;
@@ -25,6 +23,8 @@ import com.yanzhenjie.permission.task.TaskExecutor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Zhenjie Yan on 2018/1/25.
@@ -62,7 +62,7 @@ class LRequest extends BaseRequest {
     public void start() {
         mPermissions = filterPermissions(mPermissions);
 
-        new TaskExecutor<List<String>>(mSource.getContext()) {
+        new TaskExecutor<List<String>>() {
             @Override
             protected List<String> doInBackground(Void... voids) {
                 return getDeniedPermissions(STRICT_CHECKER, mSource, mPermissions);

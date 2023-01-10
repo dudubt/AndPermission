@@ -15,8 +15,6 @@
  */
 package com.yanzhenjie.permission.runtime;
 
-import androidx.annotation.NonNull;
-
 import com.yanzhenjie.permission.RequestExecutor;
 import com.yanzhenjie.permission.bridge.BridgeRequest;
 import com.yanzhenjie.permission.bridge.RequestManager;
@@ -29,6 +27,8 @@ import com.yanzhenjie.permission.task.TaskExecutor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Zhenjie Yan on 2016/9/9.
@@ -98,7 +98,7 @@ class MRequest extends BaseRequest implements RequestExecutor, BridgeRequest.Cal
 
     @Override
     public void onCallback() {
-        new TaskExecutor<List<String>>(mSource.getContext()) {
+        new TaskExecutor<List<String>>() {
             @Override
             protected List<String> doInBackground(Void... voids) {
                 return getDeniedPermissions(DOUBLE_CHECKER, mSource, mPermissions);
